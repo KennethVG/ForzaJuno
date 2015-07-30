@@ -17,6 +17,7 @@ public class SpelersAdapter extends BaseAdapter {
 
     private List<Speler> spelers;
     private Context context;
+    private int[] imageIds = new int[]{R.drawable.kenneth_profiel};
 
     public SpelersAdapter(Context context, List<Speler> spelers) {
         this.spelers = spelers;
@@ -57,6 +58,12 @@ public class SpelersAdapter extends BaseAdapter {
 
         if (speler != null) {
             holder.mTxtVolledigeNaam.setText(speler.getVoornaam() + " " + speler.getAchternaam());
+
+
+            if (imageIds.length > position) {
+                holder.mImgProfielFoto.setImageDrawable(context.getResources().getDrawable(imageIds[position]));
+            }
+
         }
 
         return convertView;

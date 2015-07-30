@@ -16,5 +16,4 @@ public interface SpelerDao {
     Speler getSpelerBijVolledigeNaam(String volledigeNaam) throws SQLException;
 
 
-
 }
