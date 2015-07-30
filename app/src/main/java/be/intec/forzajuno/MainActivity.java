@@ -11,9 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, SpelersFragment.CallBacks {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -44,14 +45,12 @@ public class MainActivity extends ActionBarActivity
 //                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
 //                .commit();
 
-        if(position == 0){
+        if (position == 0) {
             fragmentManager.beginTransaction().replace(R.id.container, new PlaceholderFragment()).commit();
-        }
-        else if(position == 1){
+        } else if (position == 1) {
             fragmentManager.beginTransaction().replace(R.id.container, new SpelersFragment()).commit();
-        }
-        else if (position == 4){
-                fragmentManager.beginTransaction().replace(R.id.container, new ContactFragment()).commit();
+        } else if (position == 4) {
+            fragmentManager.beginTransaction().replace(R.id.container, new ContactFragment()).commit();
         }
     }
 
@@ -109,6 +108,19 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Passing data between SpelersFragment and SpelersDetailFragment with Activity!
+    @Override
+    public void onItemSelected(String volledigeNaam) {
+        SpelersDetailFragment df = new SpelersDetailFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Bundle args = new Bundle();
+        args.putString("vn", volledigeNaam);
+        df.setArguments(args);
+        getSupportActionBar().setTitle(volledigeNaam);
+        Toast.makeText(this, volledigeNaam, Toast.LENGTH_LONG).show();
+        fragmentManager.beginTransaction().replace(R.id.container, df).commit();
     }
 
     /**

@@ -13,6 +13,8 @@ public interface SpelerDao {
 
     List<Speler> getAllSpelers() throws SQLException;
 
+    Speler getSpelerBijVolledigeNaam(String volledigeNaam) throws SQLException;
+
 
 
 }

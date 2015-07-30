@@ -150,6 +150,22 @@ public class Speler {
         result = 31 * result + achternaam.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Speler{" +
+                "id=" + id +
+                ", voornaam='" + voornaam + '\'' +
+                ", achternaam='" + achternaam + '\'' +
+                ", geboortedatum=" + geboortedatum +
+                ", rekeningNummer='" + rekeningNummer + '\'' +
+                ", info='" + info + '\'' +
+                ", adres='" + adres + '\'' +
+                ", gemeente='" + gemeente + '\'' +
+                ", postcode=" + postcode +
+                ", telefoonnummer='" + telefoonnummer + '\'' +
+                '}';
+    }
 }
 
 

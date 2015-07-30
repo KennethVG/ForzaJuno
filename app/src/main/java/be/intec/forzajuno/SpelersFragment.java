@@ -1,6 +1,7 @@
 package be.intec.forzajuno;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,6 +28,21 @@ public class SpelersFragment extends Fragment {
     private SpelersAdapter adapter;
     private CallBacks mCallBacks;
 
+    public interface CallBacks {
+        void onItemSelected(String volledigeNaam);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try{
+            mCallBacks = (CallBacks) activity;
+        } catch (ClassCastException e){
+            throw new ClassCastException(activity.toString() + " must implement Callbacks interface!");
+        }
+    }
 
     public SpelersFragment() {
         // Required empty public constructor
@@ -80,9 +96,9 @@ public class SpelersFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LinearLayout linearLayout = (LinearLayout) view;
                 TextView tv = (TextView) linearLayout.findViewById(R.id.txtVolledigeNaam);
-                String volledigeNaam = tv.getText().toString();
-//                mCallBacks.onItemSelected(volledigeNaam);
-                Toast.makeText(getActivity(), volledigeNaam, Toast.LENGTH_LONG).show();
+                String vn = tv.getText().toString();
+                mCallBacks.onItemSelected(vn);
+
             }
         });
 
@@ -90,8 +106,6 @@ public class SpelersFragment extends Fragment {
     }
 
 
-    private interface CallBacks {
-        void onItemSelected(String item);
-    }
+
 
 }
