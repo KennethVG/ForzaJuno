@@ -1,5 +1,6 @@
 package be.intec.forzajuno;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.software.shell.fab.ActionButton;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -23,10 +26,29 @@ public class SpelersDetailFragment extends Fragment {
     private int position;
     private SpelerDao dao;
     private int[] imageIds = new int[]{R.drawable.kenneth_profiel, R.drawable.matti_profiel, R.drawable.kevin_prfiel, R.drawable.jef_profiel, R.drawable.kerk_profiel};
-
+    private Speler speler;
+    private CallBacksUpdaten mCallBacksUpdaten;
 
     public SpelersDetailFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallBacksUpdaten = (CallBacksUpdaten) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement CallbacksUpdaten interface!");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallBacksUpdaten = null;
     }
 
     @Override
@@ -55,8 +77,9 @@ public class SpelersDetailFragment extends Fragment {
         TextView geboorteDatum = (TextView) v.findViewById(R.id.txtGeboortedatum);
         TextView info = (TextView) v.findViewById(R.id.txtInfo);
         ImageView profielFotoGroot = (ImageView) v.findViewById(R.id.imgGroteProfielfoto);
+        ActionButton actionButton = (ActionButton) v.findViewById(R.id.action_button_detail);
+        actionButton.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_edit));
 
-        Speler speler = null;
         try {
             speler = dao.getSpelerBijVolledigeNaam(volledigeNaam);
         } catch (SQLException e) {
@@ -75,8 +98,19 @@ public class SpelersDetailFragment extends Fragment {
             profielFotoGroot.setImageDrawable(getActivity().getResources().getDrawable(imageIds[position]));
         }
 
+        actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallBacksUpdaten.spelerUpdaten(speler);
+            }
+        });
+
         return v;
     }
 
+
+    public interface CallBacksUpdaten{
+        void spelerUpdaten(Speler speler);
+    }
 
 }

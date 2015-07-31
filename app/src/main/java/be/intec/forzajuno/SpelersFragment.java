@@ -49,6 +49,12 @@ public class SpelersFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallBacks = null;
+    }
+
     public SpelersFragment() {
         // Required empty public constructor
     }
@@ -65,12 +71,12 @@ public class SpelersFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_spelers, container, false);
         ListView lvSpelers = (ListView) v.findViewById(R.id.lv_spelers);
         ActionButton actionButton = (ActionButton) v.findViewById(R.id.action_button);
-//        actionButton.setImageResource(R.drawable.fab_plus_icon);
+
 
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Op de button geklikt " + v.toString(), Toast.LENGTH_LONG).show();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new SpelerToevoegenFragment()).commit();
             }
         });
 

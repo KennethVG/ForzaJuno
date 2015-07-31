@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -74,20 +75,20 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txtInfoTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/speler_info"
-                android:id="@+id/txtInfoTitle"
-                android:textStyle="bold"
-                android:textSize="14sp"
+                android:textColor="@color/abc_primary_text_material_light"
                 android:textIsSelectable="false"
-                android:textColor="@color/abc_primary_text_material_light" />
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtInfo"
@@ -98,25 +99,44 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginTop="15dp">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txtStatistiekenTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/speler_statistieken"
-                android:id="@+id/txtStatistiekenTitle"
-                android:textStyle="bold"
-                android:textSize="14sp"
+                android:textColor="@color/abc_primary_text_material_light"
                 android:textIsSelectable="false"
-                android:textColor="@color/abc_primary_text_material_light" />
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtStatistieken"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.software.shell.fab.ActionButton
+                    android:id="@+id/action_button_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginRight="15dp"
+                    fab:button_color="@color/fab_material_blue_500"
+                    fab:button_colorPressed="@color/fab_material_blue_900"
+                     />
+            </RelativeLayout>
+
+
         </LinearLayout>
     </LinearLayout>
 

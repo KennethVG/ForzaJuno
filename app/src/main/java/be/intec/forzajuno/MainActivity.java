@@ -11,10 +11,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import be.intec.forzajuno.model.Speler;
+
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, SpelersFragment.CallBacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, SpelersFragment.CallBacks, SpelersDetailFragment.CallBacksUpdaten {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -120,8 +123,19 @@ public class MainActivity extends ActionBarActivity
         args.putInt("pos", position);
         df.setArguments(args);
         getSupportActionBar().setTitle(volledigeNaam);
-        Toast.makeText(this, volledigeNaam, Toast.LENGTH_LONG).show();
         fragmentManager.beginTransaction().replace(R.id.container, df).commit();
+    }
+
+    // Passing data between SpelerDetailFragment and SpelerUpdatenFragment with Activity!
+    @Override
+    public void spelerUpdaten(Speler speler) {
+        SpelerUpdatenFragment updatenFragment = new SpelerUpdatenFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Bundle args = new Bundle();
+        args.putSerializable("speler", speler);
+        updatenFragment.setArguments(args);
+        getSupportActionBar().setTitle(speler.getVoornaam() + " " + speler.getAchternaam());
+        fragmentManager.beginTransaction().replace(R.id.container,updatenFragment).commit();
     }
 
     /**
