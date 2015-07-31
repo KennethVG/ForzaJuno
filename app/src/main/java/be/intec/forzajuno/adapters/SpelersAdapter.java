@@ -17,7 +17,7 @@ public class SpelersAdapter extends BaseAdapter {
 
     private List<Speler> spelers;
     private Context context;
-    private int[] imageIds = new int[]{R.drawable.kenneth_profiel};
+    private int[] imageIds = new int[]{R.drawable.kenneth_profiel, R.drawable.matti_profiel, R.drawable.kevin_prfiel, R.drawable.jef_profiel, R.drawable.kerk_profiel};
 
     public SpelersAdapter(Context context, List<Speler> spelers) {
         this.spelers = spelers;

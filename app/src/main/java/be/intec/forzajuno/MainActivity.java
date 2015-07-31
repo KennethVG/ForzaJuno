@@ -112,11 +112,12 @@ public class MainActivity extends ActionBarActivity
 
     // Passing data between SpelersFragment and SpelersDetailFragment with Activity!
     @Override
-    public void onItemSelected(String volledigeNaam) {
+    public void onItemSelected(String volledigeNaam, int position) {
         SpelersDetailFragment df = new SpelersDetailFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         Bundle args = new Bundle();
         args.putString("vn", volledigeNaam);
+        args.putInt("pos", position);
         df.setArguments(args);
         getSupportActionBar().setTitle(volledigeNaam);
         Toast.makeText(this, volledigeNaam, Toast.LENGTH_LONG).show();

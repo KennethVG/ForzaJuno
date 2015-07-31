@@ -6,16 +6,18 @@
 
     <ImageView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/imgProfielfoto"
         android:layout_weight="1"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:layout_marginRight="5dp"/>
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/txtVolledigeNaam"
         android:layout_weight="3"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:layout_gravity="center_vertical" />
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.sql.SQLException;
@@ -19,7 +20,9 @@ import be.intec.forzajuno.persistence.SpelerDaoORMImpl;
 public class SpelersDetailFragment extends Fragment {
 
     private String volledigeNaam;
+    private int position;
     private SpelerDao dao;
+    private int[] imageIds = new int[]{R.drawable.kenneth_profiel, R.drawable.matti_profiel, R.drawable.kevin_prfiel, R.drawable.jef_profiel, R.drawable.kerk_profiel};
 
 
     public SpelersDetailFragment() {
@@ -29,7 +32,13 @@ public class SpelersDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        volledigeNaam = getArguments().getString("vn");
+        Bundle extras = getArguments();
+
+        if (extras != null) {
+            volledigeNaam = extras.getString("vn");
+            position = extras.getInt("pos");
+        }
+
         dao = new SpelerDaoORMImpl(getActivity());
     }
 
@@ -44,6 +53,8 @@ public class SpelersDetailFragment extends Fragment {
         TextView gsmNummer = (TextView) v.findViewById(R.id.txtGsmNummer);
         TextView rekeningNummer = (TextView) v.findViewById(R.id.txtRekeningNummer);
         TextView geboorteDatum = (TextView) v.findViewById(R.id.txtGeboortedatum);
+        TextView info = (TextView) v.findViewById(R.id.txtInfo);
+        ImageView profielFotoGroot = (ImageView) v.findViewById(R.id.imgGroteProfielfoto);
 
         Speler speler = null;
         try {
@@ -60,6 +71,8 @@ public class SpelersDetailFragment extends Fragment {
             Date date = speler.getGeboortedatum();
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             geboorteDatum.setText(format.format(date));
+            info.setText(speler.getInfo());
+            profielFotoGroot.setImageDrawable(getActivity().getResources().getDrawable(imageIds[position]));
         }
 
         return v;

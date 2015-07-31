@@ -30,6 +30,7 @@ public class SpelerDaoORMImpl implements SpelerDao {
                 return 0;
             }
         }
+
         return getSpelerDao().create(speler);
     }
 

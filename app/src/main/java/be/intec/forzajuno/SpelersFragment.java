@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.software.shell.fab.ActionButton;
+
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -32,7 +34,7 @@ public class SpelersFragment extends Fragment {
     private CallBacks mCallBacks;
 
     public interface CallBacks {
-        void onItemSelected(String volledigeNaam);
+        void onItemSelected(String volledigeNaam, int position);
     }
 
     @Override
@@ -62,6 +64,15 @@ public class SpelersFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_spelers, container, false);
         ListView lvSpelers = (ListView) v.findViewById(R.id.lv_spelers);
+        ActionButton actionButton = (ActionButton) v.findViewById(R.id.action_button);
+//        actionButton.setImageResource(R.drawable.fab_plus_icon);
+
+        actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Op de button geklikt " + v.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
 
         try {
 
@@ -92,7 +103,7 @@ public class SpelersFragment extends Fragment {
                 LinearLayout linearLayout = (LinearLayout) view;
                 TextView tv = (TextView) linearLayout.findViewById(R.id.txtVolledigeNaam);
                 String vn = tv.getText().toString();
-                mCallBacks.onItemSelected(vn);
+                mCallBacks.onItemSelected(vn, position);
 
             }
         });

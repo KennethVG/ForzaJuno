@@ -11,6 +11,8 @@
         juniors van SK Berlaar. Forza Juno speelt nog steeds in de sporthal van de gemeente Berlaar</string>
 
     <string name="content_description_profielfoto">profielfoto speler</string>
+    <string name="speler_info">Extra informatie: </string>
+    <string name="speler_statistieken">Statistieken: </string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
