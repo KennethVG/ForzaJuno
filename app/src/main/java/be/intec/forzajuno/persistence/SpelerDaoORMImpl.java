@@ -40,6 +40,11 @@ public class SpelerDaoORMImpl implements SpelerDao {
     }
 
     @Override
+    public int update(Speler speler) throws SQLException {
+        return getSpelerDao().update(speler);
+    }
+
+    @Override
     public List<Speler> getAllSpelers() throws SQLException {
         return getSpelerDao().queryForAll();
     }
@@ -59,6 +64,7 @@ public class SpelerDaoORMImpl implements SpelerDao {
         }
         return null;
     }
+
 
     // Helpermethodes:
     private DBHelper getDBHelper() {

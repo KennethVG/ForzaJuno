@@ -38,36 +38,41 @@
             android:orientation="vertical">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/etxtAdres" />
+                android:id="@+id/etxtAdres"
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/etxtPostEnGemeente" />
+                android:id="@+id/etxtPostEnGemeente"
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/etxtGeboortedatum" />
+                android:id="@+id/etxtGeboortedatum"
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/etxtGsmNummer" />
+                android:id="@+id/etxtGsmNummer"
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/etxtRekeningnummer" />
+                android:id="@+id/etxtRekeningnummer"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="horizontal">
 
@@ -90,5 +95,11 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Update speler"
+        android:id="@+id/btn_update" />
 
 </LinearLayout>

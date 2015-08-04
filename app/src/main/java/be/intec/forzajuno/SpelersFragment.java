@@ -32,6 +32,7 @@ public class SpelersFragment extends Fragment {
     private List<Speler> spelers;
     private SpelersAdapter adapter;
     private CallBacks mCallBacks;
+    private ListView lvSpelers;
 
     public interface CallBacks {
         void onItemSelected(String volledigeNaam, int position);
@@ -40,6 +41,14 @@ public class SpelersFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+
+        Toast.makeText(getActivity(), "ONATTACH SPELERFRAGMENT", Toast.LENGTH_LONG).show();
+
+        if(adapter != null){
+            adapter.notifyDataSetChanged();
+            lvSpelers.setAdapter(adapter);
+        }
+
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
@@ -63,13 +72,15 @@ public class SpelersFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSpelerDao = new SpelerDaoORMImpl(getActivity());
+
+        Toast.makeText(getActivity(), "ONCREATE SPELERFRAGMENT", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_spelers, container, false);
-        ListView lvSpelers = (ListView) v.findViewById(R.id.lv_spelers);
+        lvSpelers = (ListView) v.findViewById(R.id.lv_spelers);
         ActionButton actionButton = (ActionButton) v.findViewById(R.id.action_button);
 
 
