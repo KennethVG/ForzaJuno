@@ -11,13 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
+import be.intec.forzajuno.model.Kalender;
 import be.intec.forzajuno.model.Speler;
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, SpelersFragment.CallBacks, SpelersDetailFragment.CallBacksUpdaten {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, SpelersFragment.CallBacks, SpelersDetailFragment.CallBacksUpdaten, KalenderFragment.CallBacksKalender {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -29,6 +28,10 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        // Hide softKeyboard in case its open:
+//        InputMethodManager inputMethodManager = (InputMethodManager)  this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+//        inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -49,12 +52,25 @@ public class MainActivity extends ActionBarActivity
 //                .commit();
 
         if (position == 0) {
-            fragmentManager.beginTransaction().replace(R.id.container, new PlaceholderFragment()).commit();
+            loadFragment(new PlaceholderFragment());
+            onSectionAttached(1);
         } else if (position == 1) {
-            fragmentManager.beginTransaction().replace(R.id.container, new SpelersFragment()).commit();
-        } else if (position == 4) {
-            fragmentManager.beginTransaction().replace(R.id.container, new ContactFragment()).commit();
+            loadFragment(new SpelersFragment());
+            onSectionAttached(2);
         }
+        else if(position==2){
+            loadFragment(new KalenderFragment());
+            onSectionAttached(3);
+        }
+        else if (position == 4) {
+            loadFragment(new ContactFragment());
+            onSectionAttached(5);
+        }
+    }
+
+    private void loadFragment (Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
     }
 
     public void onSectionAttached(int number) {
@@ -136,6 +152,19 @@ public class MainActivity extends ActionBarActivity
         updatenFragment.setArguments(args);
         getSupportActionBar().setTitle(speler.getVoornaam() + " " + speler.getAchternaam());
         fragmentManager.beginTransaction().replace(R.id.container,updatenFragment).commit();
+    }
+
+    // Passing data between KalenderFragment and KalenderDetailFragment with Activity:
+    @Override
+    public void onItemSelected(Kalender kalender) {
+        KalenderDetailFragment detailFragment = new KalenderDetailFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Bundle args = new Bundle();
+        args.putSerializable("kalender", kalender);
+        detailFragment.setArguments(args);
+        getSupportActionBar().setTitle(kalender.getMatch());
+        fragmentManager.beginTransaction().replace(R.id.container, detailFragment).commit();
+
     }
 
     /**

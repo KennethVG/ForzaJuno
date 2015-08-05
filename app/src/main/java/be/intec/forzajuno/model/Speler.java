@@ -32,7 +32,7 @@ public class Speler implements Serializable {
     private String telefoonnummer;
 
     public Speler() {
-        this(null, null, null);
+        // Verplicht NO-ARG for ORMLITE!
     }
 
     public Speler(String voornaam, String achternaam, String info) {

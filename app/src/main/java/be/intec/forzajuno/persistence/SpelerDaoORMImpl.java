@@ -65,6 +65,16 @@ public class SpelerDaoORMImpl implements SpelerDao {
         return null;
     }
 
+    @Override
+    public Speler zoekSpelerOpId(int id) throws SQLException {
+        return getSpelerDao().queryForId(id);
+    }
+
+    @Override
+    public int zoekIdVanSpeler(String volledigeNaam) throws SQLException {
+        Speler s = getSpelerBijVolledigeNaam(volledigeNaam);
+        return s.getId();
+    }
 
     // Helpermethodes:
     private DBHelper getDBHelper() {

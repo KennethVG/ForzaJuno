@@ -50,6 +50,7 @@ public class SpelersAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.mTxtVolledigeNaam = (TextView) convertView.findViewById(R.id.txtVolledigeNaam);
             holder.mImgProfielFoto = (ImageView) convertView.findViewById(R.id.imgProfielfoto);
+            convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }

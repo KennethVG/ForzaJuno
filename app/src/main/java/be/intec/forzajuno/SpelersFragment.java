@@ -1,6 +1,5 @@
 package be.intec.forzajuno;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.software.shell.fab.ActionButton;
 
@@ -42,9 +40,8 @@ public class SpelersFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        Toast.makeText(getActivity(), "ONATTACH SPELERFRAGMENT", Toast.LENGTH_LONG).show();
-
-        if(adapter != null){
+        // Refresh the list
+        if (adapter != null) {
             adapter.notifyDataSetChanged();
             lvSpelers.setAdapter(adapter);
         }
@@ -72,8 +69,6 @@ public class SpelersFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSpelerDao = new SpelerDaoORMImpl(getActivity());
-
-        Toast.makeText(getActivity(), "ONCREATE SPELERFRAGMENT", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -92,11 +87,9 @@ public class SpelersFragment extends Fragment {
         });
 
         try {
-
             if (mSpelerDao.getAllSpelers().isEmpty()) {
                 addAllPlayers();
             }
-
             spelers = mSpelerDao.getAllSpelers();
             adapter = new SpelersAdapter(getActivity(), spelers);
 
@@ -108,25 +101,21 @@ public class SpelersFragment extends Fragment {
             throw new RuntimeException("Fout in het parsen van de datum!");
         }
 
-        if (adapter != null) {
-            lvSpelers.setAdapter(adapter);
-        } else {
-            Toast.makeText(getActivity(), "ADAPTER IS NULL, ER IS IETS MIS!", Toast.LENGTH_LONG).show();
-        }
+        lvSpelers.setAdapter(adapter);
 
-        lvSpelers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                LinearLayout linearLayout = (LinearLayout) view;
-                TextView tv = (TextView) linearLayout.findViewById(R.id.txtVolledigeNaam);
-                String vn = tv.getText().toString();
-                mCallBacks.onItemSelected(vn, position);
-
-            }
-        });
-
+        lvSpelers.setOnItemClickListener(myListener);
         return v;
     }
+
+    private AdapterView.OnItemClickListener myListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            LinearLayout linearLayout = (LinearLayout) view;
+            TextView tv = (TextView) linearLayout.findViewById(R.id.txtVolledigeNaam);
+            String vn = tv.getText().toString();
+            mCallBacks.onItemSelected(vn, position);
+        }
+    };
 
 
     private void addAllPlayers() throws ParseException, SQLException {

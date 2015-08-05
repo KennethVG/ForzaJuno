@@ -11,10 +11,14 @@ public interface SpelerDao {
 
     int delete(Speler speler) throws SQLException;
 
+    Speler zoekSpelerOpId(int id) throws SQLException;
+
     int update(Speler speler) throws SQLException;
 
     List<Speler> getAllSpelers() throws SQLException;
 
     Speler getSpelerBijVolledigeNaam(String volledigeNaam) throws SQLException;
+
+    int zoekIdVanSpeler(String volledigeNaam) throws SQLException;
 
 }

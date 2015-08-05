@@ -6,23 +6,25 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "stats")
 public class Statistieken {
 
-    @DatabaseField
-    private int spelerId;
-    @DatabaseField
+    @DatabaseField (generatedId = true)
+    private int _id;
+    @DatabaseField (foreign = true)
+    private Speler speler;
+    @DatabaseField (canBeNull = false, defaultValue = "0")
     private int aantalGoals;
-    @DatabaseField
+    @DatabaseField (canBeNull = false, defaultValue = "0")
     private int aantalAssists;
-    @DatabaseField
+    @DatabaseField (canBeNull = false, defaultValue = "0")
     private int aantalKeerTruitjesGewassen;
     @DatabaseField
     private boolean heeftTruitjes;
 
     public Statistieken() {
-
+        // Verplicht NO-ARG for ORMLITE!
     }
 
-    public Statistieken(int spelerId, int aantalGoals, int aantalAssists, int aantalKeerTruitjesGewassen, boolean heeftTruitjes) {
-        this.spelerId= spelerId;
+    public Statistieken(Speler speler, int aantalGoals, int aantalAssists, int aantalKeerTruitjesGewassen, boolean heeftTruitjes) {
+        this.speler = speler;
         this.aantalGoals = aantalGoals;
         this.aantalAssists = aantalAssists;
         this.aantalKeerTruitjesGewassen = aantalKeerTruitjesGewassen;
@@ -61,11 +63,19 @@ public class Statistieken {
         this.heeftTruitjes = heeftTruitjes;
     }
 
-    public int getSpelerId() {
-        return spelerId;
+    public Speler getSpeler() {
+        return speler;
     }
 
-    public void setSpelerId(int spelerId) {
-        this.spelerId = spelerId;
+    public void setSpeler(Speler speler) {
+        this.speler = speler;
+    }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
     }
 }
