@@ -98,7 +98,7 @@ public class KalenderFragment extends Fragment {
     };
 
     private void fillKalender2015_2016() throws SQLException {
-        Kalender wedstrijd1 = new Kalender("Zo 23 aug 18.30u", "Forza Juno - JJ Van Dessel");
+        Kalender wedstrijd1 = new Kalender("Zo 23 aug 19.30u", "Forza Juno - JJ Van Dessel");
         Kalender wedstrijd2 = new Kalender("Ma 31 aug 22.00u", "Forza Juno - Dynamo Gestel");
         Kalender wedstrijd3 = new Kalender("Zo 6 sep 18.30u", "NC² - Forza Juno");
         Kalender wedstrijd4 = new Kalender("Vr 18 sep 21.00u", "Forza Juno - D'ouw Duvels");
@@ -107,14 +107,14 @@ public class KalenderFragment extends Fragment {
         Kalender wedstrijd7 = new Kalender("Zo 4 okt 18.30u", "Forza Juno - Dynamo Lier");
         Kalender wedstrijd8 = new Kalender("Zo 11 okt 19.30u", "Forza Juno - Jong Valvecke");
         Kalender wedstrijd9 = new Kalender("Zo 19 okt 22.00u", "Forza Juno - De Ronnies");
-        Kalender wedstrijd10 = new Kalender("Zo 25 okt 18.30u", "Forza Juno - Los Tigris");
+        Kalender wedstrijd10 = new Kalender("Zo 25 okt 19.30u", "Forza Juno - Los Tigris");
         Kalender wedstrijd11 = new Kalender("Do 5 nov 22.00u", "Forza Juno - Heidebloem");
         Kalender wedstrijd12 = new Kalender("Di 10 nov 22.00u", "Forza Juno - PJB Waver");
         Kalender wedstrijd13 = new Kalender("Di 17 nov 22.00u", "Forza Juno - Ontmoeting");
         Kalender wedstrijd14 = new Kalender("Zo 22 nov 20.30u", "Forza Juno - De vedetjes");
         Kalender wedstrijd15 = new Kalender("Zo 29 nov 18.30u", "Forza Juno - Klikske");
         Kalender wedstrijd16 = new Kalender("Vr 11 dec 22.00u", "Forza Juno - Pink Panthers");
-        Kalender wedstrijd17 = new Kalender("Zo 13 dec 22.00u", "Forza Juno - La Tirette");
+        Kalender wedstrijd17 = new Kalender("Zo 13 dec 21.30u", "Forza Juno - La Tirette");
         Kalender wedstrijd18 = new Kalender("Vr 18 dec 22.00u", "D'ouw duvels - Forza Juno");
 
 

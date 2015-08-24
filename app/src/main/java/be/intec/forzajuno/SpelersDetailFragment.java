@@ -25,7 +25,10 @@ public class SpelersDetailFragment extends Fragment {
     private String volledigeNaam;
     private int position;
     private SpelerDao dao;
-    private int[] imageIds = new int[]{R.drawable.kenneth_profiel, R.drawable.matti_profiel, R.drawable.kevin_prfiel, R.drawable.jef_profiel, R.drawable.kerk_profiel};
+    private int[] imageIds = new int[]{R.drawable.kenneth_profiel, R.drawable.matti_profiel, R.drawable.kevin_prfiel, R.drawable.jef_profiel,
+            R.drawable.joni_profiel, R.drawable.kerk_profiel, R.drawable.nick_profiel, R.drawable.kleine_profiel,
+            R.drawable.ghote_profiel, R.drawable.voet_profiel, R.drawable.vik_profiel, R.drawable.danny_profiel,
+            R.drawable.jerre_profiel, R.drawable.yves_profiel, R.drawable.franky_profiel};
     private Speler speler;
     private CallBacksUpdaten mCallBacksUpdaten;
 
@@ -109,7 +112,7 @@ public class SpelersDetailFragment extends Fragment {
     }
 
 
-    public interface CallBacksUpdaten{
+    public interface CallBacksUpdaten {
         void spelerUpdaten(Speler speler);
     }
 
